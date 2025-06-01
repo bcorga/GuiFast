@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./services/frontend
+    ports:
+      - "3000:3000" # Puerto expuesto para el frontend
+    volumes:
+      - ./services/frontend:/app
+      - /app/node_modules # Para evitar conflictos con los módulos de Node.js
+    environment:
+      - NODE_ENV=development
+
+  backend:
+    build:
+      context: ./services/api
+    ports:
+      - "5000:5000" # Puerto expuesto para el backend
+    volumes:
+      - ./services/api:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:ps1root@database:5432/guion_platform
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+
+  model:
+    build:
+      context: ./services/ai
+    ports:
+      - "8000:8000" # Puerto expuesto para el modelo de IA
+    volumes:
+      - ./services/ai:/app
+
+  database:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ps1root
+      POSTGRES_DB: guion_platform
+    ports:
+      - "5432:5432" # Puerto de PostgreSQL para conectar desde otros servicios
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persistencia de datos
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      - database
+
+volumes:
+  postgres_data: # Volume persistente para la base de datos

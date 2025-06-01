@@ -1,0 +1,2 @@
+services/ai/guion-model/*.safetensors filter=lfs diff=lfs merge=lfs -text
+services/ai/*.zip filter=lfs diff=lfs merge=lfs -text

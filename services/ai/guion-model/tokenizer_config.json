@@ -1,0 +1,1935 @@
+{
+  "add_prefix_space": false,
+  "added_tokens_decoder": {
+    "0": {
+      "content": "<s>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "1": {
+      "content": "<pad>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "2": {
+      "content": "</s>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "3": {
+      "content": "<unk>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "4": {
+      "content": "<mask>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50265": {
+      "content": "<|endoftext|>",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50266": {
+      "content": "[ABOGADA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50267": {
+      "content": "[ABUELA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50268": {
+      "content": "[ABUELO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50269": {
+      "content": "[ADOLESCENTE 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50270": {
+      "content": "[ADOLESCENTE 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50271": {
+      "content": "[ADOLFO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50272": {
+      "content": "[ALUMNO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50273": {
+      "content": "[ALUMNO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50274": {
+      "content": "[ALUMNO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50275": {
+      "content": "[AMANTE 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50276": {
+      "content": "[AMANTE 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50277": {
+      "content": "[AMIGA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50278": {
+      "content": "[AMIGA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50279": {
+      "content": "[AMIGO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50280": {
+      "content": "[AMIGO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50281": {
+      "content": "[ANA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50282": {
+      "content": "[ANDREA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50283": {
+      "content": "[ANDRÉS]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50284": {
+      "content": "[APRENDIZ]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50285": {
+      "content": "[ARQUEÓLOGO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50286": {
+      "content": "[ARQUEÓLOGO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50287": {
+      "content": "[ARQUITECTO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50288": {
+      "content": "[ARQUITECTO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50289": {
+      "content": "[ARTISTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50290": {
+      "content": "[ARTISTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50291": {
+      "content": "[ASTRONAUTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50292": {
+      "content": "[ASTRONAUTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50293": {
+      "content": "[ATLETA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50294": {
+      "content": "[ATLETA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50295": {
+      "content": "[AVENTURERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50296": {
+      "content": "[AVENTURERO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50297": {
+      "content": "[BARBERO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50298": {
+      "content": "[BRYAN]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50299": {
+      "content": "[CAMARÓGRAFO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50300": {
+      "content": "[CAMPISTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50301": {
+      "content": "[CAMPISTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50302": {
+      "content": "[CAPITÁN]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50303": {
+      "content": "[CARLOS]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50304": {
+      "content": "[CARMEN]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50305": {
+      "content": "[CAROLINA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50306": {
+      "content": "[CHEF 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50307": {
+      "content": "[CHEF 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50308": {
+      "content": "[CIENTÍFICO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50309": {
+      "content": "[CIENTÍFICO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50310": {
+      "content": "[CLIENTE]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50311": {
+      "content": "[COCINERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50312": {
+      "content": "[COCINERO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50313": {
+      "content": "[COLECCIONISTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50314": {
+      "content": "[COLECCIONISTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50315": {
+      "content": "[COMPAÑERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50316": {
+      "content": "[COMPAÑERO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50317": {
+      "content": "[CONDUCTOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50318": {
+      "content": "[CONDUCTOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50319": {
+      "content": "[CONDUCTOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50320": {
+      "content": "[COPILOTO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50321": {
+      "content": "[DENTISTA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50322": {
+      "content": "[DEPORTISTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50323": {
+      "content": "[DEPORTISTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50324": {
+      "content": "[DESCONOCIDO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50325": {
+      "content": "[DESCONOCIDO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50326": {
+      "content": "[DETECTIVE 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50327": {
+      "content": "[DETECTIVE 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50328": {
+      "content": "[DIRECTOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50329": {
+      "content": "[DUEÑO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50330": {
+      "content": "[EL SOBRINO BRYAN]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50331": {
+      "content": "[EL TÍO PEDRO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50332": {
+      "content": "[ENFERMERA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50333": {
+      "content": "[ESCALADOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50334": {
+      "content": "[ESCALADOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50335": {
+      "content": "[ESCRITOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50336": {
+      "content": "[ESCRITOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50337": {
+      "content": "[ESPOSA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50338": {
+      "content": "[ESPOSO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50339": {
+      "content": "[ESTILISTA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50340": {
+      "content": "[ESTUDIANTE 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50341": {
+      "content": "[ESTUDIANTE 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50342": {
+      "content": "[EXCURSIONISTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50343": {
+      "content": "[EXCURSIONISTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50344": {
+      "content": "[FARERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50345": {
+      "content": "[FARERO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50346": {
+      "content": "[FERIANTE 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50347": {
+      "content": "[FERIANTE 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50348": {
+      "content": "[GALA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50349": {
+      "content": "[GAMER 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50350": {
+      "content": "[GAMER 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50351": {
+      "content": "[GATO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50352": {
+      "content": "[HERMANA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50353": {
+      "content": "[HERMANO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50354": {
+      "content": "[HERMANO MAYOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50355": {
+      "content": "[HERMANO MENOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50356": {
+      "content": "[HIJA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50357": {
+      "content": "[HIJO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50358": {
+      "content": "[HISTORIADOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50359": {
+      "content": "[HISTORIADOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50360": {
+      "content": "[HOMBRE]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50361": {
+      "content": "[HUMANO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50362": {
+      "content": "[INGENIERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50363": {
+      "content": "[INGENIERO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50364": {
+      "content": "[INMA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50365": {
+      "content": "[INVESTIGADOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50366": {
+      "content": "[INVESTIGADOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50367": {
+      "content": "[IRIS]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50368": {
+      "content": "[ISABEL]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50369": {
+      "content": "[JAIMITO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50370": {
+      "content": "[JESÚS]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50371": {
+      "content": "[JORGE]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50372": {
+      "content": "[JOVEN 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50373": {
+      "content": "[JOVEN 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50374": {
+      "content": "[JUANCITO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50375": {
+      "content": "[JUAN]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50376": {
+      "content": "[JUGADOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50377": {
+      "content": "[JULIO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50378": {
+      "content": "[JURADO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50379": {
+      "content": "[JURADO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50380": {
+      "content": "[LARA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50381": {
+      "content": "[LAURA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50382": {
+      "content": "[LIBRERO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50383": {
+      "content": "[LOCUTOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50384": {
+      "content": "[LOCUTOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50385": {
+      "content": "[LOCUTOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50386": {
+      "content": "[LORO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50387": {
+      "content": "[LUCÍA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50388": {
+      "content": "[LUIS]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50389": {
+      "content": "[MADRE]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50390": {
+      "content": "[MAESTRA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50391": {
+      "content": "[MAESTRO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50392": {
+      "content": "[MAMÁ]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50393": {
+      "content": "[MANUEL]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50394": {
+      "content": "[MARCOS]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50395": {
+      "content": "[MARCO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50396": {
+      "content": "[MARIO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50397": {
+      "content": "[MARI]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50398": {
+      "content": "[MARTA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50399": {
+      "content": "[MARÍA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50400": {
+      "content": "[MERCEDES]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50401": {
+      "content": "[MIGUELITO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50402": {
+      "content": "[MIGUEL]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50403": {
+      "content": "[MUJER]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50404": {
+      "content": "[MÚSICO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50405": {
+      "content": "[MÚSICO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50406": {
+      "content": "[MÚSICO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50407": {
+      "content": "[NARRADOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50408": {
+      "content": "[NIETA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50409": {
+      "content": "[NIETO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50410": {
+      "content": "[NIEVES]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50411": {
+      "content": "[NIÑA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50412": {
+      "content": "[NIÑA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50413": {
+      "content": "[NIÑA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50414": {
+      "content": "[NIÑO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50415": {
+      "content": "[NIÑO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50416": {
+      "content": "[NIÑO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50417": {
+      "content": "[NUEVO FARERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50418": {
+      "content": "[NUEVO FARERO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50419": {
+      "content": "[PACIENTE]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50420": {
+      "content": "[PACO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50421": {
+      "content": "[PADRE]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50422": {
+      "content": "[PANADERO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50423": {
+      "content": "[PAPÁ]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50424": {
+      "content": "[PASAJERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50425": {
+      "content": "[PASAJERO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50426": {
+      "content": "[PEDRITO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50427": {
+      "content": "[PEDRO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50428": {
+      "content": "[PEPITO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50429": {
+      "content": "[PERIODISTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50430": {
+      "content": "[PERIODISTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50431": {
+      "content": "[PERRO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50432": {
+      "content": "[PERSONA 1 (leyendo)]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50433": {
+      "content": "[PERSONA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50434": {
+      "content": "[PERSONA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50435": {
+      "content": "[PESCADOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50436": {
+      "content": "[PESCADOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50437": {
+      "content": "[PEZ 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50438": {
+      "content": "[PEZ 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50439": {
+      "content": "[PRIMA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50440": {
+      "content": "[PRIMA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50441": {
+      "content": "[PRIMO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50442": {
+      "content": "[PROFESORA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50443": {
+      "content": "[PROFESOR]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50444": {
+      "content": "[RESTAURADOR 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50445": {
+      "content": "[RESTAURADOR 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50446": {
+      "content": "[ROBERTO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50447": {
+      "content": "[ROBOT]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50448": {
+      "content": "[SANDRA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50449": {
+      "content": "[SERGIO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50450": {
+      "content": "[SOCIO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50451": {
+      "content": "[SOCIO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50452": {
+      "content": "[SOFÍA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50453": {
+      "content": "[TACAÑO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50454": {
+      "content": "[TITULO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50455": {
+      "content": "[TOMÁS]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50456": {
+      "content": "[TURISTA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50457": {
+      "content": "[TURISTA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50458": {
+      "content": "[TÍA]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50459": {
+      "content": "[VAGABUNDO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50460": {
+      "content": "[VECINA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50461": {
+      "content": "[VECINA 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50462": {
+      "content": "[VECINO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50463": {
+      "content": "[VECINO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50464": {
+      "content": "[VIAJERA 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50465": {
+      "content": "[VIAJERO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50466": {
+      "content": "[VOLUNTARIO 1]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50467": {
+      "content": "[VOLUNTARIO 2]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50468": {
+      "content": "[estilo: comico]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50469": {
+      "content": "[estilo: educativo]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50470": {
+      "content": "[estilo: general]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50471": {
+      "content": "[estilo: narrativo]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50472": {
+      "content": "[estilo: publicitario]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    },
+    "50473": {
+      "content": "[ÁLVARO]",
+      "lstrip": false,
+      "normalized": false,
+      "rstrip": false,
+      "single_word": false,
+      "special": true
+    }
+  },
+  "additional_special_tokens": [
+    "[ABOGADA]",
+    "[ABUELA]",
+    "[ABUELO]",
+    "[ADOLESCENTE 1]",
+    "[ADOLESCENTE 2]",
+    "[ADOLFO]",
+    "[ALUMNO 1]",
+    "[ALUMNO 2]",
+    "[ALUMNO]",
+    "[AMANTE 1]",
+    "[AMANTE 2]",
+    "[AMIGA 1]",
+    "[AMIGA 2]",
+    "[AMIGO 1]",
+    "[AMIGO 2]",
+    "[ANA]",
+    "[ANDREA]",
+    "[ANDRÉS]",
+    "[APRENDIZ]",
+    "[ARQUEÓLOGO 1]",
+    "[ARQUEÓLOGO 2]",
+    "[ARQUITECTO 1]",
+    "[ARQUITECTO 2]",
+    "[ARTISTA 1]",
+    "[ARTISTA 2]",
+    "[ASTRONAUTA 1]",
+    "[ASTRONAUTA 2]",
+    "[ATLETA 1]",
+    "[ATLETA 2]",
+    "[AVENTURERO 1]",
+    "[AVENTURERO 2]",
+    "[BARBERO]",
+    "[BRYAN]",
+    "[CAMARÓGRAFO]",
+    "[CAMPISTA 1]",
+    "[CAMPISTA 2]",
+    "[CAPITÁN]",
+    "[CARLOS]",
+    "[CARMEN]",
+    "[CAROLINA]",
+    "[CHEF 1]",
+    "[CHEF 2]",
+    "[CIENTÍFICO 1]",
+    "[CIENTÍFICO 2]",
+    "[CLIENTE]",
+    "[COCINERO 1]",
+    "[COCINERO 2]",
+    "[COLECCIONISTA 1]",
+    "[COLECCIONISTA 2]",
+    "[COMPAÑERO 1]",
+    "[COMPAÑERO 2]",
+    "[CONDUCTOR 1]",
+    "[CONDUCTOR 2]",
+    "[CONDUCTOR]",
+    "[COPILOTO]",
+    "[DENTISTA]",
+    "[DEPORTISTA 1]",
+    "[DEPORTISTA 2]",
+    "[DESCONOCIDO 1]",
+    "[DESCONOCIDO 2]",
+    "[DETECTIVE 1]",
+    "[DETECTIVE 2]",
+    "[DIRECTOR]",
+    "[DUEÑO]",
+    "[EL SOBRINO BRYAN]",
+    "[EL TÍO PEDRO]",
+    "[ENFERMERA]",
+    "[ESCALADOR 1]",
+    "[ESCALADOR 2]",
+    "[ESCRITOR 1]",
+    "[ESCRITOR 2]",
+    "[ESPOSA]",
+    "[ESPOSO]",
+    "[ESTILISTA]",
+    "[ESTUDIANTE 1]",
+    "[ESTUDIANTE 2]",
+    "[EXCURSIONISTA 1]",
+    "[EXCURSIONISTA 2]",
+    "[FARERO 1]",
+    "[FARERO 2]",
+    "[FERIANTE 1]",
+    "[FERIANTE 2]",
+    "[GALA]",
+    "[GAMER 1]",
+    "[GAMER 2]",
+    "[GATO]",
+    "[HERMANA 1]",
+    "[HERMANO 1]",
+    "[HERMANO MAYOR]",
+    "[HERMANO MENOR]",
+    "[HIJA]",
+    "[HIJO]",
+    "[HISTORIADOR 1]",
+    "[HISTORIADOR 2]",
+    "[HOMBRE]",
+    "[HUMANO]",
+    "[INGENIERO 1]",
+    "[INGENIERO 2]",
+    "[INMA]",
+    "[INVESTIGADOR 1]",
+    "[INVESTIGADOR 2]",
+    "[IRIS]",
+    "[ISABEL]",
+    "[JAIMITO]",
+    "[JESÚS]",
+    "[JORGE]",
+    "[JOVEN 1]",
+    "[JOVEN 2]",
+    "[JUANCITO]",
+    "[JUAN]",
+    "[JUGADOR]",
+    "[JULIO]",
+    "[JURADO 1]",
+    "[JURADO 2]",
+    "[LARA]",
+    "[LAURA]",
+    "[LIBRERO]",
+    "[LOCUTOR 1]",
+    "[LOCUTOR 2]",
+    "[LOCUTOR]",
+    "[LORO]",
+    "[LUCÍA]",
+    "[LUIS]",
+    "[MADRE]",
+    "[MAESTRA]",
+    "[MAESTRO]",
+    "[MAMÁ]",
+    "[MANUEL]",
+    "[MARCOS]",
+    "[MARCO]",
+    "[MARIO]",
+    "[MARI]",
+    "[MARTA]",
+    "[MARÍA]",
+    "[MERCEDES]",
+    "[MIGUELITO]",
+    "[MIGUEL]",
+    "[MUJER]",
+    "[MÚSICO 1]",
+    "[MÚSICO 2]",
+    "[MÚSICO]",
+    "[NARRADOR]",
+    "[NIETA]",
+    "[NIETO]",
+    "[NIEVES]",
+    "[NIÑA 1]",
+    "[NIÑA 2]",
+    "[NIÑA]",
+    "[NIÑO 1]",
+    "[NIÑO 2]",
+    "[NIÑO]",
+    "[NUEVO FARERO 1]",
+    "[NUEVO FARERO 2]",
+    "[PACIENTE]",
+    "[PACO]",
+    "[PADRE]",
+    "[PANADERO]",
+    "[PAPÁ]",
+    "[PASAJERO 1]",
+    "[PASAJERO 2]",
+    "[PEDRITO]",
+    "[PEDRO]",
+    "[PEPITO]",
+    "[PERIODISTA 1]",
+    "[PERIODISTA 2]",
+    "[PERRO]",
+    "[PERSONA 1 (leyendo)]",
+    "[PERSONA 1]",
+    "[PERSONA 2]",
+    "[PESCADOR 1]",
+    "[PESCADOR 2]",
+    "[PEZ 1]",
+    "[PEZ 2]",
+    "[PRIMA 1]",
+    "[PRIMA 2]",
+    "[PRIMO]",
+    "[PROFESORA]",
+    "[PROFESOR]",
+    "[RESTAURADOR 1]",
+    "[RESTAURADOR 2]",
+    "[ROBERTO]",
+    "[ROBOT]",
+    "[SANDRA]",
+    "[SERGIO]",
+    "[SOCIO 1]",
+    "[SOCIO 2]",
+    "[SOFÍA]",
+    "[TACAÑO]",
+    "[TITULO]",
+    "[TOMÁS]",
+    "[TURISTA 1]",
+    "[TURISTA 2]",
+    "[TÍA]",
+    "[VAGABUNDO]",
+    "[VECINA 1]",
+    "[VECINA 2]",
+    "[VECINO 1]",
+    "[VECINO 2]",
+    "[VIAJERA 1]",
+    "[VIAJERO 1]",
+    "[VOLUNTARIO 1]",
+    "[VOLUNTARIO 2]",
+    "[estilo: comico]",
+    "[estilo: educativo]",
+    "[estilo: general]",
+    "[estilo: narrativo]",
+    "[estilo: publicitario]",
+    "[ÁLVARO]"
+  ],
+  "bos_token": "<|endoftext|>",
+  "clean_up_tokenization_spaces": false,
+  "eos_token": "<|endoftext|>",
+  "extra_special_tokens": {},
+  "model_max_length": 1000000000000000019884624838656,
+  "pad_token": "<|endoftext|>",
+  "tokenizer_class": "GPT2Tokenizer",
+  "unk_token": "<|endoftext|>"
+}

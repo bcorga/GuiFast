@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    links:
+      - postgres
+    volumes:
+      - .:/proyecto_guion_web
+    environment:
+      - NODE_ENV=development
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ps1root
+      POSTGRES_DB: guion_platform
+    volumes:
+      - guionplatform_db_data:/var/lib/postgresql/data
+
+volumes:
+  guionplatform_db_data:
+    driver: local
