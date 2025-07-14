@@ -28,11 +28,24 @@ const User = sequelize.define("User", {
   avatar: {
     type: DataTypes.STRING, // URL o nombre del archivo
     allowNull: true,
-  }
+  },
+  verified: {
+  type: DataTypes.BOOLEAN,
+  defaultValue: false
+},
+verificationToken: {
+  type: DataTypes.STRING,
+  allowNull: true
+},
+verificationTokenExpires: {
+  type: DataTypes.DATE,
+  allowNull: true
+}
 }, {
   tableName: "users",
   timestamps: true,
 });
+
 // Cada usuario pertenece a un rol
 User.belongsTo(Role, { foreignKey: "roleId" });
 Role.hasMany(User, { foreignKey: "roleId" });

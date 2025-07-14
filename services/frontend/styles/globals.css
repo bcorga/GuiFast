@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-preview, .print-preview * {
+    visibility: visible;
+  }
+  .print-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .watermark {
+    display: block !important;
+    opacity: 0.1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 5rem;
+    color: #000;
+    pointer-events: none;
+    z-index: 1000;
+    background-image: url('../public/images/marca-agua.png');
+  }
+}

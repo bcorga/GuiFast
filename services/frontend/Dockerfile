@@ -5,7 +5,7 @@ FROM node:18
 WORKDIR /app
 
 # Copia los archivos necesarios para la instalación inicial
-COPY package.json package-lock.json ./
+COPY package.json ./
 
 # Instala las dependencias del proyecto
 RUN npm install

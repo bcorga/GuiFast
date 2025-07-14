@@ -26,9 +26,13 @@ app.use("/api/scripts", scriptRoutes);
 const sequelize = require("./config/database");
 const User = require("./models/User");
 const Script = require("./models/Script");
+const ScriptVersion = require("./models/ScriptVersion");
 
 const userRoutes = require("./routes/user");
 app.use("/api/user", userRoutes);
+
+const contactoRoutes = require("./routes/contact");
+app.use("/api/contacto", contactoRoutes);
 
 // Sincronizar modelos
 sequelize.sync({ alter: true })  // Usa alter solo en desarrollo

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Script = require("../models/Script");
 const User = require("../models/User");
+const ScriptVersion = require("../models/ScriptVersion");
 
 router.post("/", async (req, res) => {
   try {
@@ -55,7 +56,7 @@ router.get("/:email", async (req, res) => {
   });
 
 
-  router.put("/:id", async (req, res) => {
+  /*router.put("/:id", async (req, res) => {
     try {
       const { id } = req.params;
       const { title, content } = req.body;
@@ -72,7 +73,33 @@ router.get("/:email", async (req, res) => {
       console.error("Error actualizando guion:", error);
       return res.status(500).json({ error: "Error interno al actualizar." });
     }
-  });
+  });*/
+
+  router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+
+    const script = await Script.findByPk(id);
+    if (!script) return res.status(404).json({ error: "Guion no encontrado." });
+
+    // Guardar versión anterior
+    await ScriptVersion.create({
+      scriptId: script.id,
+      content: script.content,
+    });
+
+    // Actualizar contenido
+    script.title = title;
+    script.content = content;
+    await script.save();
+
+    res.status(200).json({ message: "Guion actualizado correctamente." });
+  } catch (error) {
+    console.error("Error actualizando guion:", error);
+    res.status(500).json({ error: "Error interno al actualizar." });
+  }
+});
 
 
   router.delete("/:id", async (req, res) => {
@@ -105,6 +132,23 @@ router.get("/:email", async (req, res) => {
   } catch (error) {
     console.error("Error actualizando favorito:", error);
     res.status(500).json({ error: "Error interno del servidor." });
+  }
+});
+
+
+// GET /api/scripts/:id/versions
+router.get("/:id/versions", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const versions = await ScriptVersion.findAll({
+      where: { scriptId: id },
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.status(200).json({ versions });
+  } catch (error) {
+    console.error("Error cargando historial:", error);
+    res.status(500).json({ error: "Error interno al obtener historial." });
   }
 });
 

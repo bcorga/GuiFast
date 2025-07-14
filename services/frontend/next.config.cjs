@@ -7,6 +7,9 @@ const nextConfig = {
     return config;
   },
   // Otras configuraciones...
+  // --- MODIFICA ESTA LÍNEA ---
+  //transpilePackages: ['@react-pdf/renderer', 'fontkit'],
+  // -------------------------
 };
 
 module.exports = nextConfig;

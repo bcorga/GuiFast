@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import Sidebar from "../components/Sidebar";
 import GuionList from "../components/GuionList";
+import ScriptEditor from "../components/ScriptEditor";
 import ProfileSettings from "../components/ProfileSettings";
+import PrintPreview from "../components/PrintPreview";
 
 export default function Dashboard() {
   const email = typeof window !== 'undefined' ? localStorage.getItem("userEmail") : "";
@@ -16,6 +18,9 @@ export default function Dashboard() {
   const [editando, setEditando] = useState(false);
   const [editingScriptId, setEditingScriptId] = useState(null);
   const [user, setUser] = useState({ username: "", avatar: "" });
+  const [historial, setHistorial] = useState([]);
+  const [showPDF, setShowPDF] = useState(false);
+  const [mostrarVistaPrevia, setMostrarVistaPrevia] = useState(false);
 
   const showToast = (msg, type = "success") => {
     const colors = { success: "bg-green-600", error: "bg-red-600", info: "bg-blue-600", warning: "bg-yellow-600" };
@@ -66,7 +71,7 @@ export default function Dashboard() {
     }
   };
 
-  const handleGuardar = async () => {
+ /* const handleGuardar = async () => {
     if (!title || !guion) return showToast("Título y contenido son requeridos", "warning");
     const url = editingScriptId ?
       `http://localhost:5000/api/scripts/${editingScriptId}` :
@@ -85,7 +90,42 @@ export default function Dashboard() {
     } catch {
       showToast("Error guardando guion", "error");
     }
-  };
+  };*/
+
+  const handleGuardar = async () => {
+    if (!title || !guion) return showToast("Título y contenido son requeridos.", "warning");
+
+    const payload = { email, title, content: guion };
+    const url = editingScriptId
+      ? `http://localhost:5000/api/scripts/${editingScriptId}`
+      : "http://localhost:5000/api/scripts";
+
+    const method = editingScriptId ? "PUT" : "POST";
+
+    const response = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    alert(data.message || "Guion guardado.");
+
+    // Cargar historial si es edición
+    if (editingScriptId) {
+      const versionRes = await fetch(`http://localhost:5000/api/scripts/${editingScriptId}/versions`);
+      const versionData = await versionRes.json();
+      setHistorial(versionData.versions || []);
+    }
+
+    setEditando(false);
+    setEditingScriptId(null);
+    setTitle("");
+    setGuion("");
+
+    const refresh = await fetch(`http://localhost:5000/api/scripts/${encodeURIComponent(email)}`);
+    const refreshedData = await refresh.json();
+    setScripts(refreshedData.scripts);
+  }; 
 
   const descargar = (contenido, formato) => {
     if (!contenido) return;
@@ -105,6 +145,36 @@ export default function Dashboard() {
     <div className="flex">
       <Sidebar user={user} setView={setView} view={view} showProfileLink />
       <main className="flex-1 p-8 bg-gray-100 min-h-screen">
+        {view === "historial" && (
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Historial de versiones</h1>
+            <ul className="space-y-4">
+              {historial.map((version, index) => (
+                <li key={version.id} className="p-4 border bg-white rounded shadow">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-500">
+                      {new Date(version.createdAt).toLocaleString()}
+                    </span>
+                    <button
+                      className="text-blue-600 hover:underline"
+                      onClick={() => {
+                        setGuion(version.content);
+                        setView("nuevo");
+                        showToast("Versión restaurada", "info");
+                      }}
+                    >
+                      Restaurar esta versión
+                    </button>
+                  </div>
+                  <pre className="mt-2 whitespace-pre-wrap text-sm bg-gray-50 p-2 rounded">
+                    {version.content}
+                  </pre>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {view === 'mis-guiones' && (
           <>
             <h1 className="text-2xl font-bold mb-4">Mis Guiones</h1>
@@ -118,6 +188,7 @@ export default function Dashboard() {
               setEditando={setEditando}
               setEditingScriptId={setEditingScriptId}
               setView={setView}
+              setHistorial={setHistorial}
               onDelete={async (id) => {
                 if (window.confirm("¿Seguro?")) {
                   await fetch(`http://localhost:5000/api/scripts/${id}`, { method: 'DELETE' });
@@ -143,6 +214,7 @@ export default function Dashboard() {
               setEditando={setEditando}
               setEditingScriptId={setEditingScriptId}
               setView={setView}
+              setHistorial={setHistorial}
               onDelete={async (id) => {
                 if (window.confirm("¿Seguro?")) {
                   await fetch(`http://localhost:5000/api/scripts/${id}`, { method: 'DELETE' });
@@ -172,6 +244,7 @@ export default function Dashboard() {
               <div className="flex gap-3">
                 <button onClick={handleGenerar} className="bg-blue-600 text-white px-4 py-2 rounded">Generar</button>
                 <button onClick={handleGuardar} className="bg-green-600 text-white px-4 py-2 rounded">Guardar</button>
+                <button onClick={() => setMostrarVistaPrevia(true)} className="bg-indigo-600 text-white px-4 py-2 rounded">Vista Previa PDF</button>
               </div>
             </div>
           </>
@@ -182,6 +255,13 @@ export default function Dashboard() {
             <ProfileSettings user={user} setUser={setUser} />
           </>
         )}
+        {mostrarVistaPrevia && (
+            <PrintPreview
+              content={guion}
+              title={title}
+              onClose={() => setMostrarVistaPrevia(false)}
+            />
+          )}
       </main>
     </div>
   );

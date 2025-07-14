@@ -10,6 +10,7 @@ export default function GuionList({
   onDelete,
   renderContent,
   toggleFavorite,
+  setHistorial,
 }) {
 if (!scripts || !Array.isArray(scripts)) return <p className="text-gray-500">No hay guiones.</p>;
 
@@ -63,6 +64,17 @@ if (filtrados.length === 0) return <p className="text-gray-500">No hay guiones.<
                 Eliminar
               </button>
             )}
+            <button
+              onClick={async () => {
+                const res = await fetch(`http://localhost:5000/api/scripts/${s.id}/versions`);
+                const data = await res.json();
+                setHistorial(data.versions || []);
+                setView("historial");
+              }}
+              className="px-3 py-1 text-sm bg-indigo-600 text-white rounded"
+            >
+              Ver Historial
+            </button>
           </div>
         </div>
       ))}

@@ -34,11 +34,7 @@ export default function Sidebar({ user, setView, view, showProfileLink }) {
 
       <button
           onClick={() => {
-            localStorage.removeItem("userEmail");
-            localStorage.removeItem("userId");
-            localStorage.removeItem("username");
-            localStorage.removeItem("avatar");
-            localStorage.removeItem("userScripts");
+            localStorage.clear(); // ✅ Limpia todos los datos de la sesión, incluyendo 'isLoggedIn'
             window.location.href = "/login"; // redirige al login
           }}
           className="mt-auto flex items-center gap-2 text-red-300 hover:text-white"

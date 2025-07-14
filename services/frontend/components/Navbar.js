@@ -4,8 +4,22 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const loginStatus = localStorage.getItem("isLoggedIn");
-    setIsLoggedIn(loginStatus === "true");
+    // Función para verificar el estado de la sesión
+    const checkLoginStatus = () => {
+      const loginStatus = localStorage.getItem("isLoggedIn");
+      setIsLoggedIn(loginStatus === "true");
+    };
+
+    // 1. Verifica el estado al cargar el componente
+    checkLoginStatus();
+
+    // 2. Agrega un "escuchador" de eventos para sincronizar entre pestañas
+    window.addEventListener("storage", checkLoginStatus);
+
+    // 3. Limpia el "escuchador" cuando el componente se desmonte
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -16,7 +30,7 @@ export default function Navbar() {
     return (
       <header className="bg-blue-600 text-white p-4">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="text-xl font-bold" ><a href="/">Logo Web</a></div>
+          <div className="text-xl font-bold" ><img src="../images/LogoGuiFast.png" alt="GuiFast" style={{ width: '150px', height: 'auto' }}  /></div>
           <nav>
             <ul className="flex space-x-6">
               <li><a href="#recursos">Recursos</a></li>
@@ -24,7 +38,7 @@ export default function Navbar() {
               <li><a href="#tipos">Tipos de Guiones</a></li>
               <li><a href="/products">Productos</a></li>
               <li><a href="/faq">Preguntas y Respuestas</a></li>
-              <li><a href="#contacto">Contacto</a></li>
+              <li><a href="/contacto">Contacto</a></li>
             </ul>
           </nav>
           <div className="space-x-4">

@@ -24,6 +24,8 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:ps1root@database:5432/guion_platform
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
 
   model:
     build:
