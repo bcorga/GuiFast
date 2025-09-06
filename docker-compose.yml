@@ -17,6 +17,10 @@ services:
       context: ./services/api
     ports:
       - "5000:5000" # Puerto expuesto para el backend
+    depends_on:
+      database:
+        condition: service_healthy
+    
     volumes:
       - ./services/api:/app
       - /app/node_modules
@@ -46,6 +50,12 @@ services:
       - "5432:5432" # Puerto de PostgreSQL para conectar desde otros servicios
     volumes:
       - postgres_data:/var/lib/postgresql/data # Persistencia de datos
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
   pgadmin:
     image: dpage/pgadmin4

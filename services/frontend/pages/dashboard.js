@@ -22,6 +22,11 @@ export default function Dashboard() {
   const [showPDF, setShowPDF] = useState(false);
   const [mostrarVistaPrevia, setMostrarVistaPrevia] = useState(false);
 
+  // 🔎 Estados de búsqueda y filtros
+  const [busqueda, setBusqueda] = useState("");
+  const [filtroEstilo, setFiltroEstilo] = useState("todos");
+  const [ordenFecha, setOrdenFecha] = useState("desc"); // "asc" o "desc"
+
   const showToast = (msg, type = "success") => {
     const colors = { success: "bg-green-600", error: "bg-red-600", info: "bg-blue-600", warning: "bg-yellow-600" };
     const toast = document.createElement("div");
@@ -141,6 +146,23 @@ export default function Dashboard() {
     }
   };
 
+  // 📌 Lógica de búsqueda y filtros
+  const scriptsFiltrados = scripts
+    .filter(s => {
+      const coincideBusqueda =
+        s.title.toLowerCase().includes(busqueda.toLowerCase()) ||
+        s.content.toLowerCase().includes(busqueda.toLowerCase());
+
+      const coincideEstilo = filtroEstilo === "todos" || s.estilo === filtroEstilo;
+
+      return coincideBusqueda && coincideEstilo;
+    })
+    .sort((a, b) =>
+      ordenFecha === "asc"
+        ? new Date(a.createdAt) - new Date(b.createdAt)
+        : new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
   return (
     <div className="flex">
       <Sidebar user={user} setView={setView} view={view} showProfileLink />
@@ -175,9 +197,44 @@ export default function Dashboard() {
           </div>
         )}
 
+        {(view === "mis-guiones" || view === "favoritos") && (
+          <div className="mb-6 flex flex-wrap gap-4 items-center">
+            <input
+              type="text"
+              placeholder="Buscar por título o contenido..."
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+              className="p-2 border rounded flex-1"
+            />
+            <select
+              value={filtroEstilo}
+              onChange={(e) => setFiltroEstilo(e.target.value)}
+              className="p-2 border rounded"
+            >
+              <option value="todos">Todos los estilos</option>
+              <option value="comico">Cómico</option>
+              <option value="narrativo">Narrativo</option>
+              <option value="publicitario">Publicitario</option>
+              <option value="educativo">Educativo</option>
+              <option value="general">General</option>
+            </select>
+            <select
+              value={ordenFecha}
+              onChange={(e) => setOrdenFecha(e.target.value)}
+              className="p-2 border rounded"
+            >
+              <option value="desc">Más recientes</option>
+              <option value="asc">Más antiguos</option>
+            </select>
+          </div>
+        )}
+
         {view === 'mis-guiones' && (
           <>
             <h1 className="text-2xl font-bold mb-4">Mis Guiones</h1>
+            {scriptsFiltrados.length === 0 ? (
+              <p className="text-gray-500">No hay resultados que coincidan con tu búsqueda.</p>
+            ) : (
             <GuionList
               scripts={scripts}
               soloFavoritos={false}
@@ -199,6 +256,7 @@ export default function Dashboard() {
               }}
               renderContent={(content) => <pre className="whitespace-pre-wrap bg-gray-50 p-4 rounded">{content}</pre>}
             />
+            )}
           </>
         )}
         {view === 'favoritos' && (

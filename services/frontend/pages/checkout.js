@@ -1,80 +1,61 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import PayPalButton from '../components/PayPalButton';
+// pages/checkout.js
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Layout from "../components/Layout";
 
 export default function Checkout() {
   const router = useRouter();
   const { packageName, packagePrice } = router.query;
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-  // Estado para manejar la carga de los parámetros
-  const [loading, setLoading] = useState(true);
+  const handleConfirmPurchase = async () => {
+    setLoading(true);
+    try {
+      //const userId = localStorage.getItem("userId"); // Usuario logueado
+      const email = localStorage.getItem("userEmail");
+      const response = await fetch("http://localhost:5000/api/purchase", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, packageName }),
+      });
 
-  // Verifica si los parámetros se han recibido correctamente
-  useEffect(() => {
-    if (packageName && packagePrice) {
+      const data = await response.json();
+      if (response.ok) {
+        setMessage(data.message);
+        // Guardar rol en localStorage
+        localStorage.setItem("userRole", data.role);
+        setTimeout(() => router.push("/dashboard"), 2000);
+      } else {
+        setMessage(data.error || "Error en la compra.");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setMessage("Error procesando la compra.");
+    } finally {
       setLoading(false);
     }
-  }, [packageName, packagePrice]);
-
-  // Si los parámetros no se han recibido, mostramos un mensaje de error
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!packageName || !packagePrice) {
-    return <p>Error: No se recibieron los parámetros del paquete correctamente.</p>;
-  }
-
-  // Lógica para el pago con tarjeta
-  const handleCardPayment = async () => {
-    const res = await fetch('/api/payments/checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        packageName,
-        packagePrice,
-      }),
-    });
-    const { url } = await res.json();
-    window.location.href = url; // Redirige a Stripe
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold mb-4">Compra: {packageName}</h1>
-      <p className="text-2xl mb-8">Precio: ${packagePrice}</p>
+    <Layout>
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+        <div className="bg-white p-6 rounded shadow-md max-w-md text-center">
+          <h1 className="text-2xl font-bold mb-4">Confirmar Compra</h1>
+          <p className="mb-2">Plan seleccionado: <strong>{packageName}</strong></p>
+          <p className="mb-4">Precio: <strong>${packagePrice}</strong></p>
 
-      <div className="mb-4">
-        <button
-          onClick={handleCardPayment}
-          className="bg-blue-600 text-white px-6 py-3 rounded shadow-md hover:bg-blue-700 mb-4"
-        >
-          Pagar con Tarjeta (Visa/MasterCard)
-        </button>
+          <button
+            onClick={handleConfirmPurchase}
+            disabled={loading}
+            className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 disabled:opacity-50"
+          >
+            {loading ? "Procesando..." : "Confirmar Compra"}
+          </button>
+
+          {message && <p className="mt-4 text-blue-600">{message}</p>}
+        </div>
       </div>
-
-      <h2 className="text-xl mb-4">O paga con PayPal:</h2>
-      <PayPalButton amount={packagePrice} />
-    </div>
+    </Layout>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { packageName, packagePrice } = context.query;
-
-  // Si no se reciben los parámetros necesarios, redirigimos a la página de productos
-  if (!packageName || !packagePrice) {
-    return {
-      redirect: {
-        destination: '/products',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { packageName, packagePrice },
-  };
 }
