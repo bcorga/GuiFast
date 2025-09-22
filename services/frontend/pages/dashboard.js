@@ -236,7 +236,7 @@ export default function Dashboard() {
               <p className="text-gray-500">No hay resultados que coincidan con tu búsqueda.</p>
             ) : (
             <GuionList
-              scripts={scripts}
+              scripts={scriptsFiltrados}
               soloFavoritos={false}
               toggleFavorite={toggleFavorite}
               descargar={descargar}
@@ -263,7 +263,7 @@ export default function Dashboard() {
           <>
             <h1 className="text-2xl font-bold mb-4">⭐ Mis Favoritos</h1>
             <GuionList
-              scripts={scripts}
+              scripts={scriptsFiltrados}
               soloFavoritos={true}
               toggleFavorite={toggleFavorite}
               descargar={descargar}
