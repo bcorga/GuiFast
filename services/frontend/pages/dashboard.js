@@ -51,8 +51,8 @@ export default function Dashboard() {
   const toggleFavorite = async (id) => {
     if (!email) return;
     try {
-      await fetch(`http://localhost:5000/api/scripts/${id}/favorite`, { method: "PUT" });
-      const res = await fetch(`http://localhost:5000/api/scripts/${encodeURIComponent(email)}`);
+      await fetch(`/api/scripts/${id}/favorite`, { method: "PUT" });
+      const res = await fetch(`/api/scripts/${encodeURIComponent(email)}`);
       const data = await res.json();
       setScripts(data.scripts || []);
       showToast("Favorito actualizado", "info");
@@ -64,7 +64,7 @@ export default function Dashboard() {
 
   const handleGenerar = async () => {
     try {
-      const resp = await fetch("http://localhost:8000/generate", {
+      const resp = await fetch("/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: guion, tone: tono, estilo })
