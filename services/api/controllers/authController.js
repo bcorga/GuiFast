@@ -7,8 +7,8 @@ const jwt = require("jsonwebtoken");
 const { Op } = require("sequelize");
 
 // --- CONSTANTES ---
-const FRONTEND_LOGIN_URL = "http://localhost:3000/login"; // URL del Login del Frontend
-const BACKEND_VERIFY_URL = "http://localhost:5000/api/auth/verify"; // URL del Backend para verificación
+const FRONTEND_LOGIN_URL = "https://guifast-production.up.railway.app/login"; // URL del Login del Frontend
+const BACKEND_VERIFY_URL = "https://thriving-love-production-4611.up.railway.app/api/auth/verify"; // URL del Backend para verificación
 // Definir un secreto para el JWT. ¡En producción, debe ser una variable de entorno!
 const JWT_SECRET = process.env.JWT_SECRET; 
 
@@ -70,7 +70,7 @@ exports.register = async (req, res) => {
       verificationTokenExpires
     });
 
-    const link = `http://localhost:5000/api/auth/verify?token=${verificationToken}`;
+    const link = `https://thriving-love-production-4611.up.railway.app/api/auth/verify?token=${verificationToken}`;
     await sendEmail(email, "Activa tu cuenta", `Haz clic en este enlace para activar tu cuenta: ${link}`);
 
     res.status(201).json({ message: "Usuario registrado. Revisa tu email para activar tu cuenta." });
