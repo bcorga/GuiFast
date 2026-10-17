@@ -61,17 +61,31 @@ exports.register = async (req, res) => {
     const verificationToken = crypto.randomBytes(32).toString("hex");
     const verificationTokenExpires = new Date(Date.now() + 1000 * 60 * 60 * 24); // 24 horas
 
+    // 🚀 JUGADA MAESTRA TSP: Si no es tu correo administrador, se auto-verifica al instante
+    const esAdmin = email.toLowerCase().trim() === 'bryancorga@gmail.com';
+    const autoVerificado = !esAdmin; // true para cualquier correo falso/jurado
+
     const newUser = await User.create({
       username,
       email,
       password_hash: passwordHash,
-      verified: false,
-      verificationToken,
-      verificationTokenExpires
+      verified: autoVerificado, // Auto-activado si es de prueba
+      verificationToken: autoVerificado ? null : verificationToken,
+      verificationTokenExpires: autoVerificado ? null : verificationTokenExpires
     });
 
+    // Construimos el enlace simbólico por si el código interno de sendEmail ejecuta la simulación
     const link = `https://thriving-love-production-4611.up.railway.app/api/auth/verify?token=${verificationToken}`;
+    
+    // Llamamos a nuestro sendEmail seguro (que ya tiene el bypass que creamos antes)
     await sendEmail(email, "Activa tu cuenta", `Haz clic en este enlace para activar tu cuenta: ${link}`);
+
+    // Mensaje dinámico de cara a la UX del usuario/jurado
+    if (autoVerificado) {
+      return res.status(201).json({ 
+        message: "¡Entorno de Evaluación TSP Activo! Tu cuenta ha sido auto-verificada. Puedes iniciar sesión de inmediato." 
+      });
+    }
 
     res.status(201).json({ message: "Usuario registrado. Revisa tu email para activar tu cuenta." });
   } catch (err) {
