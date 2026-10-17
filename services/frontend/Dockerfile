@@ -9,6 +9,7 @@ COPY package.json ./
 # Copiar configuración de Jest
 COPY jest.config.cjs ./
 COPY jest.setup.js ./
+
 # Instala las dependencias del proyecto
 RUN npm install
 
@@ -18,11 +19,11 @@ COPY . .
 # Desactiva el chequeo ESLint si no lo usas aún
 ENV NEXT_DISABLE_ESLINT=true
 
-# Construye la aplicación para producción
-#RUN npm run build - MODO DEV
+# 🚀 CONSTRUYE LA APLICACIÓN PARA PRODUCCIÓN (Activo para Railway)
+RUN npm run build
 
 # Expone el puerto que usa Next.js
 EXPOSE 3000
 
-# Comando para iniciar el servidor de desarrollo
-#CMD ["npm", "run", "dev"] - MODO DEV
+# 🚀 COMANDO PARA INICIAR EL SERVIDOR EN PRODUCCIÓN (Activo para Railway)
+CMD ["npm", "run", "start"]
