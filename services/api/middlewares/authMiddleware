@@ -1,0 +1,19 @@
+// Ejemplo de un middleware básico (ubicado en middlewares/authMiddleware.js)
+const jwt = require('jsonwebtoken'); // npm install jsonwebtoken
+const SECRET = process.env.JWT_SECRET; // ¡Usa una variable de entorno!
+
+const authMiddleware = (req, res, next) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'No hay token, acceso denegado.' });
+    }
+    const decoded = jwt.verify(token, SECRET);
+    req.user = decoded; // Adjunta el payload del token (ej. { email: '...' })
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Token no válido.' });
+  }
+};
+
+module.exports = authMiddleware;
