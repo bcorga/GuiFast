@@ -11,10 +11,14 @@ const SMTP_PORT = process.env.SMTP_PORT;
 // Prioridad 1: Configuración para Proveedor Real (Resend, Gmail, SendGrid, etc.)
 if (EMAIL_USER && EMAIL_PASS && SMTP_HOST) {
   console.log(`[EMAIL] Usando proveedor real a través de ${SMTP_HOST} para producción.`);
+  
+  const currentPort = parseInt(SMTP_PORT, 10) || 465;
+
   transporter = nodemailer.createTransport({
     host: SMTP_HOST,
-    port: parseInt(SMTP_PORT, 10) || 587,
-    secure: false, // false para usar TLS/STARTTLS (puerto 587)
+    port: currentPort,
+    // 🚀 MODIFICACIÓN CRÍTICA: Será true solo si usas el puerto 465 (SSL/TLS directo)
+    secure: currentPort === 465, 
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS
