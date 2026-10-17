@@ -157,7 +157,7 @@ export default function Dashboard() {
     setLoading(true);
 
     try {
-      const resp = await fetch("http://localhost:8000/generate", {
+      const resp = await fetch("https://strong-simplicity-production-ef02.up.railway.app/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: title, tone: tono, estilo: estilo })
