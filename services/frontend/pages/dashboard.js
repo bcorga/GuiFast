@@ -91,7 +91,7 @@ export default function Dashboard() {
 
         const fetchScripts = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/scripts`, {
+                const response = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -127,14 +127,14 @@ export default function Dashboard() {
         return showToast("No autorizado para esta acción.", "error");
       }
       // 2. Add the Authorization header to the PUT request
-      await fetch(`http://localhost:5000/api/scripts/${id}/favorite`, { 
+      await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${id}/favorite`, { 
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${token}`
         }
       });
       // 3. Update the fetch for refreshing the script list to also include the token
-      const res = await fetch(`http://localhost:5000/api/scripts`, {
+      const res = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -177,8 +177,8 @@ export default function Dashboard() {
 
     const payload = { email, title, content: guion, tono, estilo };
     const url = editingScriptId
-      ? `http://localhost:5000/api/scripts/${editingScriptId}`
-      : "http://localhost:5000/api/scripts";
+      ? `https://thriving-love-production-4611.up.railway.app/api/scripts/${editingScriptId}`
+      : "https://thriving-love-production-4611.up.railway.app/api/scripts";
 
     const method = editingScriptId ? "PUT" : "POST";
 
@@ -206,7 +206,7 @@ export default function Dashboard() {
     if (editingScriptId) {
       // -------------------------------------------------------------------
       // CAMBIO CRUCIAL: Añadir el encabezado de autorización a esta llamada
-      const versionRes = await fetch(`http://localhost:5000/api/scripts/${editingScriptId}/versions`, {
+      const versionRes = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${editingScriptId}/versions`, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -222,7 +222,7 @@ export default function Dashboard() {
     setGuion("");
 
       // REFRESCAR LA LISTA (AQUÍ ES DONDE ESTABA EL ERROR 👈)
-    const refresh = await fetch(`http://localhost:5000/api/scripts`, {
+    const refresh = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
         headers: { 
             "Authorization": `Bearer ${token}`
         },
@@ -302,7 +302,7 @@ export default function Dashboard() {
                 return;
             }
 
-            const response = await fetch(`http://localhost:5000/api/scripts/${scriptId}/share`, {
+            const response = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${scriptId}/share`, {
                 method: "POST",
                 headers: { 
                     "Content-Type": "application/json",
@@ -318,7 +318,7 @@ export default function Dashboard() {
 
                 // --- CAMBIO CLAVE AQUÍ ---
                 // Refresh the scripts list after the successful share action
-                const refreshRes = await fetch(`http://localhost:5000/api/scripts`, {
+                const refreshRes = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const refreshedData = await refreshRes.json();
@@ -342,7 +342,7 @@ export default function Dashboard() {
                 return;
             }
             
-            const response = await fetch(`http://localhost:5000/api/scripts/${scriptId}/share`, {
+            const response = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${scriptId}/share`, {
                 method: "DELETE",
                 headers: { 
                     "Authorization": `Bearer ${token}` 
@@ -354,7 +354,7 @@ export default function Dashboard() {
 
                 // --- CAMBIO CLAVE AQUÍ ---
                 // Refresh the scripts list after the successful un-share action
-                const refresh = await fetch(`http://localhost:5000/api/scripts`, {
+                const refresh = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const refreshedData = await refresh.json();
@@ -379,7 +379,7 @@ export default function Dashboard() {
             }
 
             // CAMBIO CRUCIAL: Eliminar el body del fetch
-            const response = await fetch(`http://localhost:5000/api/scripts/${scriptId}/publish`, {
+            const response = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${scriptId}/publish`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -389,7 +389,7 @@ export default function Dashboard() {
             if (response.ok) {
                 showToast(data.message, "success");
                 // Refrescar la lista para que el botón se actualice
-                const refresh = await fetch(`http://localhost:5000/api/scripts`, {
+                const refresh = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
                     headers: { "Authorization": `Bearer ${token}` },
                 });
                 const refreshedData = await refresh.json();
@@ -499,7 +499,7 @@ export default function Dashboard() {
                   }
                   try {
                     // Add the token to the DELETE request
-                    await fetch(`http://localhost:5000/api/scripts/${id}`, {
+                    await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${id}`, {
                       method: 'DELETE',
                       headers: {
                         "Authorization": `Bearer ${token}`
@@ -508,7 +508,7 @@ export default function Dashboard() {
                     showToast("Guion eliminado", "info");
 
                     // Add the token to the GET request that refreshes the list
-                    const r3 = await fetch(`http://localhost:5000/api/scripts`, {
+                    const r3 = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
                       headers: {
                         "Authorization": `Bearer ${token}`
                       }
@@ -555,7 +555,7 @@ export default function Dashboard() {
 
                   try {
                     // Add the token to the DELETE request
-                    await fetch(`http://localhost:5000/api/scripts/${id}`, {
+                    await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${id}`, {
                       method: 'DELETE',
                       headers: {
                         "Authorization": `Bearer ${token}`
@@ -564,7 +564,7 @@ export default function Dashboard() {
                     showToast("Guion eliminado", "info");
 
                     // Add the token to the GET request that refreshes the list
-                    const r4 = await fetch(`http://localhost:5000/api/scripts`, {
+                    const r4 = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts`, {
                       headers: {
                         "Authorization": `Bearer ${token}`
                       }
