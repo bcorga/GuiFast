@@ -1,76 +1,68 @@
 const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
-let transporter;
 const EMAIL_USER = process.env.EMAIL_USER;
 const EMAIL_PASS = process.env.EMAIL_PASS;
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = process.env.SMTP_PORT;
 
-// --- Lógica Condicional Mejorada para Producción y Local ---
+// Inicializamos el SDK de Resend solo si EMAIL_USER es 'resend' y tenemos la API Key (EMAIL_PASS)
+let resendClient = null;
+if (EMAIL_USER === 'resend' && EMAIL_PASS) {
+  console.log('[EMAIL] Inicializando SDK oficial de Resend para producción (Evita bloqueo SMTP).');
+  resendClient = new Resend(EMAIL_PASS);
+}
 
-// Prioridad 1: Configuración para Proveedor Real (Resend, Gmail, SendGrid, etc.)
-if (EMAIL_USER && EMAIL_PASS && SMTP_HOST) {
-  console.log(`[EMAIL] Usando proveedor real a través de ${SMTP_HOST} para producción.`);
-  
-  const currentPort = parseInt(SMTP_PORT, 10) || 465;
-
-  transporter = nodemailer.createTransport({
+// Fallback: Si no estamos en producción con Resend, configuramos Nodemailer para tu MailHog local
+let localTransporter = null;
+if (!resendClient && SMTP_HOST && SMTP_PORT) {
+  console.log(`[EMAIL] Usando MailHog en ${SMTP_HOST}:${SMTP_PORT} para desarrollo local.`);
+  localTransporter = nodemailer.createTransport({
     host: SMTP_HOST,
-    port: currentPort,
-    // 🚀 MODIFICACIÓN CRÍTICA: Será true solo si usas el puerto 465 (SSL/TLS directo)
-    secure: currentPort === 465, 
-    auth: {
-      user: EMAIL_USER,
-      pass: EMAIL_PASS
-    }
+    port: parseInt(SMTP_PORT, 10),
+    secure: false,
   });
-} 
-// Prioridad 2: Fallback rápido por si usas Gmail directo (Legacy)
-else if (EMAIL_USER && EMAIL_PASS) {
-  console.log('[EMAIL] Usando configuración directa de Gmail.');
-  transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: EMAIL_USER,
-      pass: EMAIL_PASS
-    }
-  });
-} 
-// Prioridad 3: Configuración para entorno de prueba local (MailHog)
-else if (SMTP_HOST && SMTP_PORT) {
- console.log(`[EMAIL] Usando MailHog en ${SMTP_HOST}:${SMTP_PORT} para desarrollo local.`);
- transporter = nodemailer.createTransport({
-  host: SMTP_HOST, 
-  port: parseInt(SMTP_PORT, 10), 
-  secure: false, 
- });
-}
-// Fallback: Modo Simulado
-else {
-    console.error('[EMAIL ERROR] Faltan variables de configuración. Activando modo simulado.');
-    transporter = {
-        sendMail: (options) => {
-            console.log(`[EMAIL SIMULADO] Correo a: ${options.to}, Asunto: ${options.subject}`);
-            return Promise.resolve({ messageId: 'simulated-id' });
-        }
-    };
 }
 
-const sendEmail = (to, subject, text) => {
- console.log(`[EMAIL] Intentando enviar correo a: ${to}`);
- 
-  // Evitamos que falle si se ejecuta el simulador
-  if (transporter.sendMail.toString().includes('SIMULADO')) {
-      return transporter.sendMail({ to, subject, text });
+const sendEmail = async (to, subject, text) => {
+  console.log(`[EMAIL] Intentando enviar correo a: ${to}`);
+
+  // CASO 1: EN PRODUCCIÓN (Usa el SDK de Resend por HTTP seguro)
+  if (resendClient) {
+    try {
+      const { data, error } = await resendClient.emails.send({
+        from: 'GuionApp <onboarding@resend.dev>', // Obligatorio mantener este en el plan gratis
+        to: [to],
+        subject: subject,
+        text: text,
+      });
+
+      if (error) {
+        console.error('[EMAIL ERROR SDK]:', error);
+        throw error;
+      }
+      console.log('[EMAIL ENVIADO EXITOSAMENTE POR SDK]:', data.id);
+      return data;
+    } catch (err) {
+      console.error('[EMAIL CRITICAL ERROR SDK]:', err);
+      throw err;
+    }
   }
 
- return transporter.sendMail({
-  // IMPORTANTE: Resend exige que el remitente en el 'from' coincida con su dominio de onboarding, o fallará el envío
-  from: `"GuionApp" <${EMAIL_USER === 'resend' ? 'onboarding@resend.dev' : (EMAIL_USER || 'no-reply@example.com')}>`, 
-  to,
-  subject,
-  text
- });
+  // CASO 2: EN DESARROLLO LOCAL (Usa tu MailHog de siempre)
+  if (localTransporter) {
+    return localTransporter.sendMail({
+      from: '"GuionApp" <no-reply@example.com>',
+      to,
+      subject,
+      text
+    });
+  }
+
+  // CASO 3: SIN CONFIGURACIÓN (Modo Simulado)
+  console.error('[EMAIL ERROR] Sin configuración activa. Modo simulado.');
+  console.log(`[EMAIL SIMULADO] Para: ${to}, Asunto: ${subject}`);
+  return Promise.resolve({ messageId: 'simulated-id' });
 };
 
 module.exports = sendEmail;
