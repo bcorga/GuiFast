@@ -74,6 +74,10 @@ exports.register = async (req, res) => {
       verificationTokenExpires: autoVerificado ? null : verificationTokenExpires
     });
 
+
+    // Obtiene automáticamente el dominio actual del backend (sea localhost o tu nueva URL de Railway)
+    const protocolo = req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+    const hostActual = req.get('host');
     // Construimos el enlace simbólico por si el código interno de sendEmail ejecuta la simulación
     const link = `https://thriving-love-production-4611.up.railway.app/api/auth/verify?token=${verificationToken}`;
     
@@ -100,6 +104,12 @@ exports.register = async (req, res) => {
  */
 exports.verifyEmail = async (req, res) => {
   const { token } = req.query;
+
+  // 🚀 VALIDACIÓN DE SEGURIDAD: Si el token no existe, redirige con error de inmediato sin consultar la BD
+  if (!token || token === "undefined") {
+    console.error("[VERIFY ERROR] Se intentó verificar un token inválido o inexistente.");
+    return res.redirect(`${FRONTEND_LOGIN_URL}?error=TokenInvalido`);
+  }
 
   try {
     const user = await User.findOne({
