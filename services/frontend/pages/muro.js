@@ -21,7 +21,7 @@ export default function MuroDeGuiones() {
   useEffect(() => {
     const fetchPublishedScripts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/public/scripts/published");
+        const response = await fetch("https://thriving-love-production-4611.up.railway.app/api/public/scripts/published");
         const data = await response.json();
         if (!response.ok) {
           // Asumiendo que el backend devuelve un objeto con un campo 'error' si algo sale mal
