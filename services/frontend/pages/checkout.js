@@ -23,7 +23,7 @@ export default function Checkout() {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/api/purchase", {
+      const response = await fetch("https://thriving-love-production-4611.up.railway.app/api/purchase", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify({ packageName }),
