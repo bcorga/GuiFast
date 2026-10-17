@@ -6,32 +6,44 @@ const EMAIL_PASS = process.env.EMAIL_PASS;
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = process.env.SMTP_PORT;
 
-// --- Lógica Condicional Mejorada ---
+// --- Lógica Condicional Mejorada para Producción y Local ---
 
-// Prioridad 1: Configuración para entorno real (Gmail)
-if (EMAIL_USER && EMAIL_PASS) {
-  console.log('[EMAIL] Usando credenciales de Gmail/SMTP real para envío (Producción/Dev local).');
+// Prioridad 1: Configuración para Proveedor Real (Resend, Gmail, SendGrid, etc.)
+if (EMAIL_USER && EMAIL_PASS && SMTP_HOST) {
+  console.log(`[EMAIL] Usando proveedor real a través de ${SMTP_HOST} para producción.`);
   transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-   user: EMAIL_USER,
-   pass: EMAIL_PASS
-  }
- });
+    host: SMTP_HOST,
+    port: parseInt(SMTP_PORT, 10) || 587,
+    secure: false, // false para usar TLS/STARTTLS (puerto 587)
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS
+    }
+  });
 } 
-// Prioridad 2: Configuración para entorno de prueba E2E (MailHog)
+// Prioridad 2: Fallback rápido por si usas Gmail directo (Legacy)
+else if (EMAIL_USER && EMAIL_PASS) {
+  console.log('[EMAIL] Usando configuración directa de Gmail.');
+  transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS
+    }
+  });
+} 
+// Prioridad 3: Configuración para entorno de prueba local (MailHog)
 else if (SMTP_HOST && SMTP_PORT) {
- console.log(`[EMAIL] Usando MailHog en ${SMTP_HOST}:${SMTP_PORT} para E2E (Faltan credenciales reales).`);
+ console.log(`[EMAIL] Usando MailHog en ${SMTP_HOST}:${SMTP_PORT} para desarrollo local.`);
  transporter = nodemailer.createTransport({
-  host: SMTP_HOST, // Debería ser 'mailhog' o similar en Docker
-  port: parseInt(SMTP_PORT, 10), // Debería ser 1025
-  secure: false, // MailHog no requiere TLS/SSL
+  host: SMTP_HOST, 
+  port: parseInt(SMTP_PORT, 10), 
+  secure: false, 
  });
 }
-// Fallback: No hay credenciales reales ni configuración de prueba
+// Fallback: Modo Simulado
 else {
-    console.error('[EMAIL ERROR] NO se puede enviar correo: Faltan credenciales (EMAIL_USER/EMAIL_PASS) y configuración de prueba (SMTP_HOST/SMTP_PORT).');
-    // Transporter simulado que no hace nada para evitar errores
+    console.error('[EMAIL ERROR] Faltan variables de configuración. Activando modo simulado.');
     transporter = {
         sendMail: (options) => {
             console.log(`[EMAIL SIMULADO] Correo a: ${options.to}, Asunto: ${options.subject}`);
@@ -40,17 +52,17 @@ else {
     };
 }
 
-
 const sendEmail = (to, subject, text) => {
- console.log(`[EMAIL] Intentando enviar correo a: ${to} con asunto: ${subject}`);
+ console.log(`[EMAIL] Intentando enviar correo a: ${to}`);
  
-  // Si estamos usando el transportador simulado, simplemente retornamos
+  // Evitamos que falle si se ejecuta el simulador
   if (transporter.sendMail.toString().includes('SIMULADO')) {
       return transporter.sendMail({ to, subject, text });
   }
 
  return transporter.sendMail({
-  from: `"GuionApp" <${EMAIL_USER || 'no-reply@example.com'}>`, // Usar EMAIL_USER si existe, sino un fallback
+  // IMPORTANTE: Resend exige que el remitente en el 'from' coincida con su dominio de onboarding, o fallará el envío
+  from: `"GuionApp" <${EMAIL_USER === 'resend' ? 'onboarding@resend.dev' : (EMAIL_USER || 'no-reply@example.com')}>`, 
   to,
   subject,
   text
