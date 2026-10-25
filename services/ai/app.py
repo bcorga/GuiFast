@@ -6,15 +6,19 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import sys
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
-load_dotenv(dotenv_path)
+# CORRECCIÓN: Intentar cargar .env de forma segura sin romper el inicio en Railway
+try:
+    dotenv_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
+    load_dotenv(dotenv_path)
+except Exception:
+    print("⚠️ No se pudo cargar el archivo .env local (Normal en producción)")
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000"])
+
+# CORRECCIÓN DE CORS: Permite que tu frontend acceda al backend tanto en localhost como en producción
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # 1. DEFINICIÓN DEL MODO DE GENERACIÓN
-# Establece 'LOCAL' o 'OPENAI' en tu terminal antes de ejecutar:
-# Por ejemplo: export GENERATOR_MODE='OPENAI'
 GENERATOR_MODE = os.environ.get("GENERATOR_MODE", "OPENAI") # Por defecto, usa OpenAI
 
 # 2. INICIALIZACIÓN CONDICIONAL
@@ -31,8 +35,11 @@ if GENERATOR_MODE == 'LOCAL':
         
 if GENERATOR_MODE == 'OPENAI':
     print("☁️ Iniciando en modo OPENAI: Cliente de API inicializado.")
-    # El API key debe estar configurado en el entorno
-    OPENAI_CLIENT = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+    # CORRECCIÓN: Validación preventiva de la API Key para evitar errores 500 silenciosos
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        print("⚠️ ALERTA CRÍTICA: OPENAI_API_KEY no encontrada en las variables de entorno.")
+    OPENAI_CLIENT = OpenAI(api_key=api_key)
 
 # Función para limpiar repeticiones (se mantiene)
 def limpiar_repeticiones(texto):
