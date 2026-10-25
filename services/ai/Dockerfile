@@ -17,7 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para iniciar el servidor de Flask/FastAPI
-#CMD ["python", "app.py"]
-
-# Comando de producción para Railway usando el puerto dinámico
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "app:app"]
+CMD ["python", "app.py"]
