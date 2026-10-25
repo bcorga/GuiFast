@@ -17,7 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para iniciar el servidor de Flask/FastAPI
-#CMD ["python", "app.py"]
-
-# Comando corregido apuntando a la subcarpeta interna exacta
-CMD ["python", "services/ai/app.py"]
+CMD ["python", "app.py"]
