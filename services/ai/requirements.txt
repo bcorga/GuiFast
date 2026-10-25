@@ -4,4 +4,3 @@ datasets
 accelerate
 openai
 python-dotenv
-gunicorn
