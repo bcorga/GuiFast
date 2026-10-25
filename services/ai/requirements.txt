@@ -1,6 +1,4 @@
 flask
 flask-cors
-datasets
-accelerate
 openai
 python-dotenv
