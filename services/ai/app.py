@@ -72,7 +72,7 @@ def generate_openai(prompt, tono, estilo):
     user_prompt = f"Tema/Título: {prompt}"
 
     response = OPENAI_CLIENT.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
