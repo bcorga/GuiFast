@@ -1,12 +1,11 @@
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from openai import OpenAI
 from dotenv import load_dotenv
 import sys
 
-# CORRECCIÓN: Intentar cargar .env de forma segura sin romper el inicio en Railway
+# Intentar cargar .env de forma segura sin romper el inicio en Railway
 try:
     dotenv_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
     load_dotenv(dotenv_path)
@@ -15,15 +14,22 @@ except Exception:
 
 app = Flask(__name__)
 
-# CORRECCIÓN DE CORS: Permite que tu frontend acceda al backend tanto en localhost como en producción
+# Permite que tu frontend acceda al backend tanto en localhost como en producción
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 # 1. DEFINICIÓN DEL MODO DE GENERACIÓN
-GENERATOR_MODE = os.environ.get("GENERATOR_MODE", "OPENAI") # Por defecto, usa OpenAI
+GENERATOR_MODE = os.environ.get("GENERATOR_MODE", "OPENAI") 
 
-# 2. INICIALIZACIÓN CONDICIONAL
+# Variables globales para el modo LOCAL
+tokenizer = None
+model = None
+GENERATOR = None
+
+# 2. INICIALIZACIÓN CONDICIONAL OPTIMIZADA
 if GENERATOR_MODE == 'LOCAL':
     print("🤖 Iniciando en modo LOCAL: Cargando modelo fine-tuneado...")
+    # OPTIMIZACIÓN: Solo importamos librerías pesadas si realmente se va a usar el modo LOCAL
+    from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
     MODEL_PATH = "guion-model"
     try:
         tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, use_fast=False)
@@ -35,7 +41,6 @@ if GENERATOR_MODE == 'LOCAL':
         
 if GENERATOR_MODE == 'OPENAI':
     print("☁️ Iniciando en modo OPENAI: Cliente de API inicializado.")
-    # CORRECCIÓN: Validación preventiva de la API Key para evitar errores 500 silenciosos
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         print("⚠️ ALERTA CRÍTICA: OPENAI_API_KEY no encontrada en las variables de entorno.")
@@ -56,19 +61,19 @@ def generate_local(estructura_prompt):
     """Llama a tu modelo fine-tuned de Hugging Face."""
     result = GENERATOR(
         estructura_prompt,
-        max_length=250, # Ajuste para mejor resultado
+        max_length=250,
         do_sample=True,
         temperature=0.85, 
         top_k=50,
         top_p=0.95,
-        repetition_penalty=5.0, # Penalidad alta para evitar repeticiones
+        repetition_penalty=5.0,
         num_return_sequences=1
     )
     return result[0]["generated_text"]
 
 def generate_openai(prompt, tono, estilo):
     """Llama a la API de OpenAI."""
-    system_prompt = f"""Eres un creador de guiones profesional latinoamericano. Tu tarea es escribir un extracto de guion coherente y bien estructurado (con descripciones y diálogos). Estos son los estilos:(Cómico - Se enfoca en el humor, diálogos ligeros y situaciones graciosas. Narrativo - Prioriza una estructura de historia con introducción, nudo y desenlace, ideal para relatos. Publicitario -Lenguaje persuasivo, breve y orientado a la acción, ideal para anuncios cortos. Educativo - Claro, informativo y estructurado para enseñar un concepto o tema. General - Un enfoque balanceado que no se ciñe a un formato estricto.) Y estos los tonos (Neutral - Mantiene un lenguaje objetivo y directo, ideal para informativos o scripts estándar. Formal - Utiliza un vocabulario profesional y estructura clásica, perfecto para presentaciones o documentos serios. Informal -Adopta un lenguaje coloquial y cercano, óptimo para redes sociales o diálogos casuales.). Asegúrate de que el guion siga el estilo '{estilo}' y el tono '{tono}'."""
+    system_prompt = f"Eres un creador de guiones profesional latinoamericano. Tu tarea es escribir un extracto de guion coherente y bien estructurado (con descripciones y diálogos). Estilo: {estilo}, Tono: {tono}."
     user_prompt = f"Tema/Título: {prompt}"
 
     response = OPENAI_CLIENT.chat.completions.create(
@@ -80,10 +85,11 @@ def generate_openai(prompt, tono, estilo):
         max_tokens=800,
         temperature=0.7,
     )
+    # CORRECCIÓN DEFINITIVA: Acceso correcto al índice [0] de las elecciones
     return response.choices[0].message.content
 
 
-# Endpoint principal (Intercambiable)
+# Endpoint principal
 @app.route("/generate", methods=["POST"])
 def generate():
     data = request.json
@@ -98,16 +104,12 @@ def generate():
     
     try:
         if GENERATOR_MODE == 'LOCAL':
-            # 1. Usa tu modelo local
             texto_generado = generate_local(estructura_prompt_header)
-            
         elif GENERATOR_MODE == 'OPENAI':
-            # 2. Usa OpenAI (pasa solo los parámetros necesarios)
             texto_generado = generate_openai(prompt, tono, estilo)
 
         guion_limpio = limpiar_repeticiones(texto_generado)
 
-        # Retornamos el guion, asegurando que el encabezado esté incluido
         return jsonify({
             "generated_text": estructura_prompt_header + "\n" + guion_limpio
         })
