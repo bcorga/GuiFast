@@ -76,7 +76,7 @@ if (filtrados.length === 0) return <p className="text-gray-500">No hay guiones.<
                     return;
                 }
                 try {
-                    const res = await fetch(`http://localhost:5000/api/scripts/${s.id}/versions`, {
+                    const res = await fetch(`https://thriving-love-production-4611.up.railway.app/api/scripts/${s.id}/versions`, {
                         headers: {
                             "Authorization": `Bearer ${token}`
                         }
