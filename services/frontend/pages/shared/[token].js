@@ -13,7 +13,7 @@ export default function SharedScript() {
 
         const fetchSharedScript = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/public/shared-link/${token}`);
+                const response = await fetch(`http://thriving-love-production-4611.up.railway.app/api/public/shared-link/${token}`);
                 const data = await response.json();
 
                 if (!response.ok) {
