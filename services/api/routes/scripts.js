@@ -10,7 +10,7 @@ const authMiddleware = require("../middlewares/authMiddleware"); // Asegúrate d
 
 // ----------------------------------------------------------------------
 // NEW: Define the API_BASE_URL
-const API_BASE_URL = "http://thriving-love-production-4611.up.railway.app/api";
+const API_BASE_URL = "https://thriving-love-production-4611.up.railway.app/api";
 // ----------------------------------------------------------------------
 
 router.post("/", async (req, res) => {
@@ -202,7 +202,7 @@ router.post("/:id/share", async (req, res) => {
     }
 
     // 3. Generar y devolver el enlace completo
-    const fullUrl = `http://guifast-production.up.railway.app/shared/${sharedLink.uniqueToken}`;
+    const fullUrl = `https://guifast-production.up.railway.app/shared/${sharedLink.uniqueToken}`;
     res.status(201).json({
       message: "Enlace de guion generado correctamente.",
       link: fullUrl,
