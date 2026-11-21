@@ -12,7 +12,7 @@ export default function ProfileSettings({ user, setUser }) {
   try {
     const email = localStorage.getItem("userEmail");
 
-    const response = await fetch("http://localhost:5000/api/user/update", {
+    const response = await fetch("https://thriving-love-production-4611.up.railway.app/api/user/update", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, username, avatar, newPassword: password }),
