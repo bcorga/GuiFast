@@ -539,6 +539,8 @@ export default function Dashboard() {
               descargar={descargar}
               setGuion={setGuion}
               setTitle={setTitle}
+              setTono={setTono}
+              setEstilo={setEstilo}
               setEditando={setEditando}
               setEditingScriptId={setEditingScriptId}
               setView={setView}
