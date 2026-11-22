@@ -72,11 +72,20 @@ export default function Dashboard() {
     }
   }, []); // El array vacío `[]` asegura que se ejecuta solo una vez al montar
 
-  // 2. useEffect para guardar 'view' en localStorage cada vez que cambie.
+    // 2. useEffect para guardar 'view' en localStorage y limpiar edición al salir de 'nuevo'
   useEffect(() => {
-    // Solo guardamos si estamos en un entorno de navegador
     if (typeof window !== 'undefined') {
       localStorage.setItem('currentView', view);
+    }
+
+    // Si el usuario sale de la vista 'nuevo', limpiamos el formulario y el modo edición
+    if (view !== 'nuevo') {
+      setEditando(false);
+      setEditingScriptId(null);
+      setTitle("");
+      setGuion("");
+      setTono("neutral");
+      setEstilo("comico");
     }
   }, [view]); // Dependencia: Se ejecuta cada vez que 'view' cambia
 
