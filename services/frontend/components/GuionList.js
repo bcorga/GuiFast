@@ -41,35 +41,36 @@ if (filtrados.length === 0) return <p className="text-gray-500">No hay guiones.<
           )}
 
           <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => {
-                const texto = s.content || "";
-            
-                // Extraer estilo y tono de las etiquetas [estilo: ...][tono: ...]
-                const matchEstilo = texto.match(/\[estilo:\s*([^\]]+)\]/i);
-                const matchTono = texto.match(/\[tono:\s*([^\]]+)\]/i);
-            
-                const estiloDetectado = matchEstilo 
-                  ? matchEstilo.trim().toLowerCase() 
-                  : (s.estilo || "comico");
-            
-                const tonoDetectado = matchTono 
-                  ? matchTono.trim().toLowerCase() 
-                  : (s.tono || "neutral");
-            
-                setGuion(texto);
-                setTitle(s.title);
-                if (setEstilo) setEstilo(estiloDetectado); // <--- 2. ACTUALIZAR ESTILO
-                if (setTono) setTono(tonoDetectado);       // <--- 2. ACTUALIZAR TONO
-                setEditando(true);
-                setEditingScriptId(s.id);
-                setView("nuevo");
-              }}
-              className="px-3 py-1 text-sm bg-yellow-500 text-white rounded"
-            >
-              Editar
-            </button>
-
+          <button
+            onClick={() => {
+              const texto = s.content || "";
+          
+              // Extraer estilo y tono de las etiquetas [estilo: ...][tono: ...]
+              const matchEstilo = texto.match(/\[estilo:\s*([^\]]+)\]/i);
+              const matchTono = texto.match(/\[tono:\s*([^\]]+)\]/i);
+          
+              // Usar [1] para obtener el texto capturado dentro de los corchetes
+              const estiloDetectado = matchEstilo && matchEstilo[1]
+                ? matchEstilo[1].trim().toLowerCase() 
+                : (s.estilo || "comico");
+          
+              const tonoDetectado = matchTono && matchTono[1]
+                ? matchTono[1].trim().toLowerCase() 
+                : (s.tono || "neutral");
+          
+              setGuion(texto);
+              setTitle(s.title);
+              if (setEstilo) setEstilo(estiloDetectado);
+              if (setTono) setTono(tonoDetectado);
+              setEditando(true);
+              setEditingScriptId(s.id);
+              setView("nuevo");
+            }}
+            className="px-3 py-1 text-sm bg-yellow-500 text-white rounded"
+          >
+            Editar
+          </button>
+              
             <button
               onClick={() => toggleFavorite(s.id)}
               className={`px-3 py-1 text-sm rounded ${s.isFavorite ? 'bg-yellow-400 text-black' : 'bg-yellow-100 text-yellow-800'}`}
