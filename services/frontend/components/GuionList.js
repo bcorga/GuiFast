@@ -4,6 +4,8 @@ export default function GuionList({
   descargar,
   setGuion,
   setTitle,
+  setTono,
+  setEstilo,
   setEditando,
   setEditingScriptId,
   setView,
